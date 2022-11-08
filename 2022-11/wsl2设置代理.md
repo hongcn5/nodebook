@@ -14,5 +14,14 @@ automatic generation of this file, add the following entry to /etc/wsl.conf:# [n
 export ALL_PROXY="http://172.19.80.1:7890"
 ```
 
+## 动态配置
+
+​	因为window 10中wsl2每次启动会修改宿主机的ip地址，所以需要动态获取宿主机ip地址。
+
+```bash
+export host_ip=$(cat /etc/resolv.conf | grep "nameserver" | cut -f 2 -d " ")	
+alias proxy='export all_proxy=socks5://${host_ip}:10810'
+```
+
 
 
